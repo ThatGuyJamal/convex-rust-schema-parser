@@ -735,6 +735,35 @@ impl IntoConvexValue for JsonValue
     }
 }
 
+pub trait ConvexValueExt
+{
+    /// Convert a convex value into a serde value
+    fn into_serde_value(self) -> JsonValue;
+}
+
+impl ConvexValueExt for ConvexValue
+{
+    fn into_serde_value(self) -> JsonValue
+    {
+        match self {
+            ConvexValue::Null => JsonValue::Null,
+            ConvexValue::Boolean(b) => JsonValue::Bool(b),
+            ConvexValue::Int64(i) => JsonValue::Number(i.into()),
+            ConvexValue::Float64(f) => {
+                if let Some(n) = serde_json::Number::from_f64(f) {
+                    JsonValue::Number(n)
+                } else {
+                    JsonValue::Null
+                }
+            }
+            ConvexValue::String(s) => JsonValue::String(s),
+            ConvexValue::Array(arr) => JsonValue::Array(arr.into_iter().map(|v| v.into_serde_value()).collect()),
+            ConvexValue::Object(map) => JsonValue::Object(map.into_iter().map(|(k, v)| (k, v.into_serde_value())).collect()),
+            ConvexValue::Bytes(b) => JsonValue::Array(b.into_iter().map(|byte| JsonValue::Number(byte.into())).collect()),
+        }
+    }
+}
+
 /// Extension trait for ConvexClient to provide a more ergonomic API
 pub trait ConvexClientExt
 {
