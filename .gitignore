@@ -1,2 +1,6 @@
 /target
 **/node_modules
+*.rs~
+*.toml~
+*.md~
+*.json~

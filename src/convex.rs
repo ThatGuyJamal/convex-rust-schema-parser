@@ -554,17 +554,17 @@ fn generate_ast(path: &PathBuf) -> Result<JsonValue, ConvexTypeGeneratorError>
     serde_json::to_value(&ret.program).map_err(ConvexTypeGeneratorError::SerializationFailed)
 }
 
-const VALID_TYPES: &[&str] = &[
+const VALID_CONVEX_TYPES: &[&str] = &[
     "id", "null", "int64", "number", "boolean", "string", "bytes", "array", "object", "record", "union", "literal",
     "optional", "any",
 ];
 
 fn validate_type_name(type_name: &str) -> Result<(), ConvexTypeGeneratorError>
 {
-    if !VALID_TYPES.contains(&type_name) {
+    if !VALID_CONVEX_TYPES.contains(&type_name) {
         return Err(ConvexTypeGeneratorError::InvalidType {
             found: type_name.to_string(),
-            valid_types: VALID_TYPES.iter().map(|&s| s.to_string()).collect(),
+            valid_types: VALID_CONVEX_TYPES.iter().map(|&s| s.to_string()).collect(),
         });
     }
     Ok(())
@@ -731,6 +731,35 @@ impl IntoConvexValue for JsonValue
                     map.into_iter().map(|(k, v)| (k, v.into_convex_value())).collect();
                 ConvexValue::Object(converted)
             }
+        }
+    }
+}
+
+pub trait ConvexValueExt
+{
+    /// Convert a convex value into a serde value
+    fn into_serde_value(self) -> JsonValue;
+}
+
+impl ConvexValueExt for ConvexValue
+{
+    fn into_serde_value(self) -> JsonValue
+    {
+        match self {
+            ConvexValue::Null => JsonValue::Null,
+            ConvexValue::Boolean(b) => JsonValue::Bool(b),
+            ConvexValue::Int64(i) => JsonValue::Number(i.into()),
+            ConvexValue::Float64(f) => {
+                if let Some(n) = serde_json::Number::from_f64(f) {
+                    JsonValue::Number(n)
+                } else {
+                    JsonValue::Null
+                }
+            }
+            ConvexValue::String(s) => JsonValue::String(s),
+            ConvexValue::Array(arr) => JsonValue::Array(arr.into_iter().map(|v| v.into_serde_value()).collect()),
+            ConvexValue::Object(map) => JsonValue::Object(map.into_iter().map(|(k, v)| (k, v.into_serde_value())).collect()),
+            ConvexValue::Bytes(b) => JsonValue::Array(b.into_iter().map(|byte| JsonValue::Number(byte.into())).collect()),
         }
     }
 }

@@ -22,8 +22,8 @@ Invoke-CommandWithCheck "Updating dependencies" {
 }
 
 # Format check
-Invoke-CommandWithCheck "Checking code formatting" {
-    cargo fmt --all -- --check
+Invoke-CommandWithCheck "Running cargo fmt" {
+    cargo fmt --all
 }
 
 # Clippy with all features

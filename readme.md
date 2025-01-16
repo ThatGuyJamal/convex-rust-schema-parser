@@ -50,14 +50,6 @@ You can watch a demo video [here](https://youtu.be/42-Ihov48AU) to learn more.
 - **Special Types**: `any`, `literal`, `id`
 - **Custom Types**: Automatic enum generation for union types
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 - Built for use with [ConvexDB](https://convex.dev)
@@ -66,3 +58,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Related Projects
 
 - [convex rust sdk](https://docs.rs/convex/latest/convex/) - Official Rust client for ConvexDB
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first.
+
+## Versioning
+
+This project follows [Semantic Versioning](https://semver.org/) (SemVer) to manage releases. The versioning format is:
+
+- **MAJOR** version is incremented for incompatible API changes or breaking changes.
+- **MINOR** version is incremented for adding new features in a backward-compatible manner.
+- **PATCH** version is incremented for backward-compatible bug fixes or minor changes that don't add new features.
+
+For more details, refer to the [CHANGELOG](CHANGELOG.md).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
