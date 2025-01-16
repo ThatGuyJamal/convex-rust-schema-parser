@@ -29,9 +29,13 @@ fn test_valid_schema()
     "#;
 
     let (_temp_dir, schema_path) = setup_test_schema(schema_content);
+
+    let temp_file = TempDir::new("convex_codegen_test").expect("Failed to create temp directory");
+    let output_path = temp_file.path().join("test_output.rs");
+
     let config = Configuration {
         schema_path,
-        out_file: "test_output.rs".to_string(),
+        out_file: output_path.to_str().unwrap().to_string(),
         ..Default::default()
     };
 
