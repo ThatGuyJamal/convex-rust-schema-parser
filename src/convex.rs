@@ -554,17 +554,17 @@ fn generate_ast(path: &PathBuf) -> Result<JsonValue, ConvexTypeGeneratorError>
     serde_json::to_value(&ret.program).map_err(ConvexTypeGeneratorError::SerializationFailed)
 }
 
-const VALID_TYPES: &[&str] = &[
+const VALID_CONVEX_TYPES: &[&str] = &[
     "id", "null", "int64", "number", "boolean", "string", "bytes", "array", "object", "record", "union", "literal",
     "optional", "any",
 ];
 
 fn validate_type_name(type_name: &str) -> Result<(), ConvexTypeGeneratorError>
 {
-    if !VALID_TYPES.contains(&type_name) {
+    if !VALID_CONVEX_TYPES.contains(&type_name) {
         return Err(ConvexTypeGeneratorError::InvalidType {
             found: type_name.to_string(),
-            valid_types: VALID_TYPES.iter().map(|&s| s.to_string()).collect(),
+            valid_types: VALID_CONVEX_TYPES.iter().map(|&s| s.to_string()).collect(),
         });
     }
     Ok(())
