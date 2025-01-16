@@ -270,9 +270,20 @@ fn generate_function_code(function: ConvexFunction) -> String
     code
 }
 
-fn capitalize_first_letter(s: &str) -> String
-{
-    s.chars().next().unwrap().to_uppercase().collect::<String>() + &s[1..]
+/// Capitalize the first letter of a string
+fn capitalize_first_letter(s: &str) -> String {
+    // If the string is empty, return an empty string
+    if s.is_empty() {
+        return String::new();
+    }
+
+    // Split the string into the first character and the rest of the string
+    let mut chars = s.chars();
+    let first_char = chars.next().expect("Expected a character but got none");
+    let rest = chars.collect::<String>();
+
+    // Capitalize the first character and concatenate with the rest of the string
+    first_char.to_uppercase().to_string() + &rest
 }
 
 fn to_pascal_case(s: &str) -> String
