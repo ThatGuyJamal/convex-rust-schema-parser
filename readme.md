@@ -66,3 +66,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Related Projects
 
 - [convex rust sdk](https://docs.rs/convex/latest/convex/) - Official Rust client for ConvexDB
+
+## Change Log
+
+See the [CHANGELOG](CHANGELOG.md) for details.

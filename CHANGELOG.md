@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 
 [//]: # (- Description of bug fixes.)
 
-## [Unreleased]
+## [1.2.0] - 2025-01-16
 ### Added
 - Description of new features or changes.
 
