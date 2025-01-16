@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 
 [//]: # (- Description of bug fixes.)
 
-## [1.2.0] - 2025-01-16
+## [0.2.0] - 2025-01-16
 ### Added
 - Added this changelog file for all releases.
 - Added `ConvexValueExt` trait to the [convex::Value](https://docs.rs/convex/0.9.0/convex/enum.Value.html) type.
