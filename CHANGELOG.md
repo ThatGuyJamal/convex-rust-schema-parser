@@ -36,7 +36,7 @@ All notable changes to this project will be documented in this file.
 - Cleaned unnecessary documentation comments.
 - Removed unused library's dependencies.
 
-## [1.0.0] - 2024-11-13
+## [0.1.0] - 2024-11-13
 ### Added
 - Initial release of the project.
 
