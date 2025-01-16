@@ -26,7 +26,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Updated from convex version [0.8.1](https://docs.rs/convex/0.8.1/convex/index.html) to [0.9.0](https://docs.rs/convex/0.9.0/convex/index.html)
 - Bumped [oxc](https://oxc.rs) to version 0.46.0
-- 
+- Removed the use of `.unwrap()` in the codebase.
 
 ### Fixed
 - Test generation scripts not deleting generated files.
