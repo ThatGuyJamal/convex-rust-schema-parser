@@ -271,7 +271,8 @@ fn generate_function_code(function: ConvexFunction) -> String
 }
 
 /// Capitalize the first letter of a string
-fn capitalize_first_letter(s: &str) -> String {
+fn capitalize_first_letter(s: &str) -> String
+{
     // If the string is empty, return an empty string
     if s.is_empty() {
         return String::new();
